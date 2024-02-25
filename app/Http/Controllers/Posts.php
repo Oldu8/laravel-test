@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Posts\SaveRequest;
 use App\Models\Post;
 
 class Posts extends Controller
@@ -10,7 +11,7 @@ class Posts extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('posts.index', ['posts' => $posts]);
+        return view('posts.index', compact('posts'));
     }
 
     public function create()
@@ -18,13 +19,9 @@ class Posts extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request)
+    public function store(SaveRequest $request)
     {
-        $validation = $request->validate([
-            'title' => 'required|min:5|max:64',
-            'description' => 'required|min:5|max:1000'
-        ]);
-        $post = Post::create($validation);
+        $post = Post::create($request->validated());
         return redirect('/posts/' . $post->id);
     }
 
@@ -41,16 +38,10 @@ class Posts extends Controller
         return view('posts.edit', compact('post'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(SaveRequest $request, string $id)
     {
-        $validatedData = $request->validate([
-        'title' => 'required|min:5|max:64',
-        'description' => 'required|min:5|max:1000'
-        ]);
-
         $post = Post::findOrFail($id);
-        $post->update($validatedData);
-        // return redirect('/posts/' . $post->id)->with('success', 'Updated Successfully!');
+        $post->update($request->validated());
         return redirect()->route('posts.show', $post->id)->with('success', 'Updated Successfully!');
     }
 
