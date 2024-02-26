@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Posts;
+use App\Http\Controllers\CarController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,7 @@ Route::get('/posts/{id}/edit', [Posts::class, 'edit']);
 Route::put('/posts/{id}', [Posts::class, 'update'])->name('posts.update');
 Route::delete('/posts/{id}', [Posts::class, 'destroy'])->name('posts.destroy');
 
+Route::resource('cars', CarController::class);
 
 
 
