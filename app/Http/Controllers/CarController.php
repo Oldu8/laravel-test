@@ -34,7 +34,9 @@ class CarController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $car = Car::findOrFail($id);
+        $transmissions = config('app-cars.transmissions');
+        return view('cars.edit', compact('car', 'transmissions'));
     }
 
     public function update(Request $request, string $id)

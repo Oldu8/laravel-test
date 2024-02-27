@@ -12,6 +12,7 @@
         <h2 class="text-3xl font-bold underline text-center">Hello mir!</h2>
         <div class="flex justify-between py-8">
             <a href="/posts" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">All Posts</a>
+            <a href="/cars" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">All Cars</a>
         </div>
     </body>
 </html>
