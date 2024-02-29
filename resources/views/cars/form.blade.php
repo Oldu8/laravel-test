@@ -8,3 +8,6 @@
                 <div class='mb-2 '>
                     <x-form-select name='transmission' label="Transmission " :options="$transmissions" placeholder="Choose transmission"/>
                 </div>
+                <div class='mb-2'>
+                    <x-form-input name='vin' label="VIN code "/>
+                </div>

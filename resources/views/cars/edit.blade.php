@@ -1,6 +1,6 @@
 <x-layout.cars-wrap title="Edit car #{{$car->id}}">
         <div class='ml-4 mt-4'>
-            <x-form action="{{ route('cars.update', $car) }}">
+            <x-form action="{{ route('cars.update', $car) }}" method="PUT">
                 @bind($car)
                     @include('cars.form')
                 @endbind

@@ -21,6 +21,13 @@ class Store extends FormRequest
                 'brand' => 'required|min:2|max:64',
                 'model' => 'required|min:2|max:64',
                 'transmission' => ['required', Rule::in(array_keys($transmissions))],
+                'vin' => ['required', 'min:4', 'max:10', $this->vinUniqueRule()]
         ];
+    }
+
+    protected function vinUniqueRule(): Rule
+    {
+        dd($this);
+        return Rule::unique(Car::class, 'vin');
     }
 }
