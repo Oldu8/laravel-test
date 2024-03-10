@@ -17,8 +17,14 @@
 <section class="max-w-md mx-auto my-2 bg-gray-100 p-2">
 	<header class="flex justify-between">
 		<a href="/cars">Catalog </a>
+		<a href="{{ route('cars.trashed') }}">Trashed Car</a>
 		<a href="{{ route('cars.create') }}">Add Car</a>
 	</header>
+    @if(session('alert'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            {{ session('alert') }}        
+        </div>
+    @endif
 	<h1 class="text-3xl font-bold underline text-center">{{ $h1 ?? $title}}</h1>
     {{$slot}}
 </section>

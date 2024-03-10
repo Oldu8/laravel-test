@@ -12,6 +12,7 @@ class CarController extends Controller
     public function index()
     {
         $cars = Car::orderBy('created_at')->get();
+        $transmissions = config('app-cars.transmissions');
         return view('cars.index', compact('cars'));
     }
 
@@ -23,14 +24,14 @@ class CarController extends Controller
     }
     public function store(StoreRequest $request)
     {
-        dd($request);
         $car = Car::create($request->validated());
         return redirect()->route('cars.show', [$car->id]);
     }
 
     public function show(Car $car)
     {
-        return view('cars.show', compact('car'));
+        $transmissions = config('app-cars.transmissions');
+        return view('cars.show', compact('car', 'transmissions'));
     }
 
     public function edit(Car $car)
@@ -48,6 +49,18 @@ class CarController extends Controller
     public function destroy(Car $car)
     {
         $car->delete();
-        return redirect()->route('cars.index');
+        return redirect()->route('cars.index')->with('alert', trans('alerts.cars.deleted'));
+    }
+
+    public function trashed()
+    {
+        $cars = Car::onlyTrashed()->orderByDesc('created_at')->get();
+        return view('cars.trashed', compact('cars'));
+    }
+
+    public function restore(string $id)
+    {
+        Car::onlyTrashed()->findOrFail($id)->restore();
+        return redirect()->route('cars.index')->with('alert', trans('alerts.cars.restored'));
     }
 }

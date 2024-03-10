@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet"/>
       <script src="https://cdn.tailwindcss.com"></script>
-      <!-- @vite('resources/css/app.scss') -->
+      @vite('resources/css/app.scss')
 </head>
 <body class="antialiased">
 <section class="max-w-md mx-auto my-2">
@@ -19,9 +19,13 @@
 		<a href="/posts">Home </a>
 		<a href="/posts/create/">Create Post</a>
 	</header>
+    @if(session('notification'))
+    <div class="bg-green-500 text-white p-2" role="alert">
+        {{ session('alert') }}
+    </div>
 	<h1 class="text-3xl font-bold underline text-center">{{ $h1 ?? $title}}</h1>
     {{$slot}}
 </section>
-    <!-- @vite('resources/js/app.js') -->
+    @vite('resources/js/app.js')
 </body>
 </html>
