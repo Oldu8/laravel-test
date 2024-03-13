@@ -13,6 +13,7 @@
         <div class="flex justify-between py-8">
             <a href="/posts" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">All Posts</a>
             <a href="/cars" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">All Cars</a>
+            <a href="/brands" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">All brands</a>
         </div>
     </body>
 </html>

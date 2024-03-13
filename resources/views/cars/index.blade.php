@@ -7,6 +7,7 @@
                 </a>
                 <p>Model: {{ $car->model }}</p>
                 <p>Transmission: {{ $car->transmission }}</p>
+                <p>VIN: {{ $car->vin }}</p>
                 <a href="{{route('cars.edit', $car)}}" class="text-blue-300 hover:underline">Edit Car</a>
             </li>
             @endforeach

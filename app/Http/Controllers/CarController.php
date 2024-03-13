@@ -42,6 +42,7 @@ class CarController extends Controller
 
     public function update(UpdateRequest $request, Car $car)
     {
+        dd($request);
         $car->update($request->validated());
         return redirect()->route('cars.show', [$car->id]);
     }
@@ -60,7 +61,14 @@ class CarController extends Controller
 
     public function restore(string $id)
     {
-        Car::onlyTrashed()->findOrFail($id)->restore();
+        $car = Car::onlyTrashed()->findOrFail($id);
+
+        if (Car::where('vin', $car->vin)->exists()) {
+            return redirect()->route('cars.trashed')->with('alert', trans('alerts.cars.restore_fail_vin'));
+        }
+
+        $car->restore();
+
         return redirect()->route('cars.index')->with('alert', trans('alerts.cars.restored'));
     }
 }

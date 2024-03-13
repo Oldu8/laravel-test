@@ -7,8 +7,16 @@ use Illuminate\Validation\Rule;
 
 class Update extends FormRequest
 {
-    protected function vinUniqueRule(): Rule
+    public function authorize(): bool
     {
-        return parent::vinUniqueRule()->ignore($this->car->id);
+        return true;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'brand' => 'required|min:2|max:64',
+            'model' => 'required|min:2|max:64',
+        ];
     }
 }
