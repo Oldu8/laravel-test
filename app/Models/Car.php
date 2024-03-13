@@ -11,6 +11,7 @@ class Car extends Model
     use HasFactory;
     use SoftDeletes;
     protected $guarded = [];
+    protected $fillable = ['brand_id', 'model', 'transmission', 'vin'];
 
     public function brand()
     {

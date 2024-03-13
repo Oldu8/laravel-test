@@ -14,8 +14,9 @@ class SaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-                'title' => 'required|min:5|max:64',
-                'description' => 'required|min:5|max:1000'
+            // 'title' => 'required|min:5|max:64' . $this->id,
+            'title' => 'required|min:5|max:64',
+            'description' => 'required|min:5|max:1000'
         ];
     }
 }

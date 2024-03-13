@@ -18,10 +18,10 @@ class Store extends FormRequest
         $transmissions = config('app-cars.transmissions');
 
         return [
-            'brand' => 'required|min:2|max:64',
+            'brand_id' => 'required|exists:brands,id',
             'model' => 'required|min:2|max:64',
             'transmission' => ['required', Rule::in(array_keys($transmissions))],
-            'vin' => ['required', 'min:4', 'max:10', Rule::unique('cars', 'vin'), 'whereNull:deleted_at'],
+            'vin' => ['required', 'min:4', 'max:10', Rule::unique('cars', 'vin')],
         ];
     }
 

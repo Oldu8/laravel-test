@@ -3,8 +3,9 @@
             @foreach ($cars as $car)
             <li class='font-semibold text-gray-600 mb-2'>
                 <a href="{{ route('cars.show', $car) }}" class="text-blue-500 hover:underline">
-                    <strong>Brand: {{ $car->brand }}</strong>
+                    <strong>Brand: {{ $car->brand->title }}</strong>
                 </a>
+                <p>Country: {{ $car->brand->country->title }}</p>
                 <p>Model: {{ $car->model }}</p>
                 <p>Transmission: {{ $car->transmission }}</p>
                 <p>VIN: {{ $car->vin }}</p>

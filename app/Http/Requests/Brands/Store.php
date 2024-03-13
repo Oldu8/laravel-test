@@ -27,13 +27,6 @@ class Store extends FormRequest
             'title' => ['required', 'string', 'min:2', 'max:15', $this->titleUniqueRule()],
         ];
     }
-    public function attributes(): array
-    {
-        return [
-            'title' => 'Название',
-
-        ];
-    }
 
     protected function titleUniqueRule()
     {
