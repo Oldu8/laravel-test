@@ -42,12 +42,18 @@ class CarController extends Controller
     {
         $transmissions = config('app-cars.transmissions');
         $brands = Brand::orderBy('title')->pluck('title', 'id');
-        return view('cars.edit', compact('car', 'transmissions', 'brands'));
+        $tags = Tag::orderBy('name')->pluck('name', 'id');
+
+        return view('cars.edit', compact('car', 'transmissions', 'brands', 'tags'));
     }
 
     public function update(UpdateRequest $request, Car $car)
     {
-        $car->update($request->validated());
+        $data = collect($request->validated());
+
+        $car->update($data->except('tags')->toArray());
+        $car->tags()->sync($data->get('tags'));
+
         return redirect()->route('cars.show', [$car->id]);
     }
 

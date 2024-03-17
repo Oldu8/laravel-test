@@ -12,5 +12,5 @@
     <x-form-input name='vin' label="VIN code "/>
 </div>
 <div class='mb-2 '>
-    <x-form-select name='tags[]' label="Tags" :options="$tags" multiple/>
+    <x-form-select name='tags[]' label="Tags" :options="$tags" multiple :size="$tags->count()" many-relation/>
 </div>
