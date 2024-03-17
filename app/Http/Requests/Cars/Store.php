@@ -22,6 +22,8 @@ class Store extends FormRequest
             'model' => 'required|min:2|max:64',
             'transmission' => ['required', Rule::in(array_keys($transmissions))],
             'vin' => ['required', 'min:4', 'max:10', Rule::unique('cars', 'vin')],
+            'tags' => 'array',
+            'tags.*' => 'integer|exists:tags,id',
         ];
     }
 

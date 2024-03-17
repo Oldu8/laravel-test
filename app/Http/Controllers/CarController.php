@@ -6,6 +6,7 @@ use App\Http\Requests\Cars\Store as StoreRequest;
 use App\Http\Requests\Cars\Update as UpdateRequest;
 use App\Models\Car;
 use App\Models\Brand;
+use App\Models\Tag;
 
 class CarController extends Controller
 {
@@ -20,7 +21,9 @@ class CarController extends Controller
     {
         $transmissions = config('app-cars.transmissions');
         $brands = Brand::orderBy('title')->pluck('title', 'id');
-        return view('cars.create', compact('transmissions', 'brands'));
+        $tags = Tag::orderBy('name')->pluck('name', 'id');
+
+        return view('cars.create', compact('transmissions', 'brands', 'tags'));
 
     }
     public function store(StoreRequest $request)
