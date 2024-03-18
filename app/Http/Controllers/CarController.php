@@ -7,12 +7,14 @@ use App\Http\Requests\Cars\Update as UpdateRequest;
 use App\Models\Car;
 use App\Models\Brand;
 use App\Models\Tag;
+use App\Enums\Cars\Status;
 
 class CarController extends Controller
 {
     public function index()
     {
-        $cars = Car::with('brand.country')->orderBy('created_at')->get();
+        // $cars = Car::with('brand.country')->where('status', Status::ACTIVE)->orderBy('created_at')->get();
+        $cars = Car::ofActive()->with('brand.country')->get();
         $transmissions = config('app-cars.transmissions');
         return view('cars.index', compact('cars'));
     }
@@ -34,6 +36,7 @@ class CarController extends Controller
 
     public function show(Car $car)
     {
+        // dd($car->status);
         $transmissions = config('app-cars.transmissions');
         return view('cars.show', compact('car', 'transmissions'));
     }
@@ -59,8 +62,12 @@ class CarController extends Controller
 
     public function destroy(Car $car)
     {
-        $car->delete();
-        return redirect()->route('cars.index')->with('alert', trans('alerts.cars.deleted'));
+        if ($car->canDelete) {
+            $car->delete();
+            return redirect()->route('cars.index')->with('alert', trans('alerts.cars.deleted'));
+        }
+
+        return redirect()->route('cars.show', [$car->id])->with('alert', trans('cant delete active car'));
     }
 
     public function trashed()
