@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Posts;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\Auth\Sessions;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,16 @@ use App\Http\Controllers\CarController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('/auth')->group(function () {
+    Route::controller(Sessions::class)->group(function () {
+        Route::get('/login', 'create')->name('auth.sessions.create');
+        Route::post('/login', 'store')->name('auth.sessions.store');
+        // Route::get('/logout', 'destroy')->name('auth.session.destroy');
+
+    });
+});
+
 Route::get('/posts', [Posts::class, 'index']);
 Route::get('/posts/create', [Posts::class, 'create']);
 Route::post('/posts', [Posts::class, 'store']);
