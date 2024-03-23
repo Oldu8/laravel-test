@@ -16,6 +16,6 @@ class Sessions extends Controller
     {
         $request->tryAuthUser();
         $request->session()->regenerate();
-        return redirect()->route('/');
+        return redirect()->intended('/');
     }
 }

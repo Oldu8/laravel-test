@@ -37,6 +37,6 @@ class Store extends FormRequest
                 'email' => trans('auth.failed'),
             ]);
         }
-        return true;
+        // return true;
     }
 }
