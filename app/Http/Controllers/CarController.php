@@ -88,4 +88,9 @@ class CarController extends Controller
 
         return redirect()->route('cars.index')->with('alert', trans('alerts.cars.restored'));
     }
+
+    public function catalog(Car $car)
+    {
+        return view('cars.catalog', compact('car'));
+    }
 }

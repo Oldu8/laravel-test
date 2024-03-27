@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Posts;
 use App\Http\Controllers\CarController;
@@ -40,6 +41,8 @@ Route::delete('/posts/{id}', [Posts::class, 'destroy'])->name('posts.destroy');
 
 Route::get('cars/trashed', [CarController::class, 'trashed'])->name('cars.trashed');
 Route::put('cars/{car}/restore', [CarController::class, 'restore'])->name('cars.restore');
+Route::get('cars/catalog/{car}', [CarController::class, 'catalog'])->name('cars.catalog');
+Route::post('/comments', [CommentsController::class, 'store'])->name('comments.store');
 Route::resource('cars', CarController::class);
 Route::resource('brands', BrandsController::class);
 

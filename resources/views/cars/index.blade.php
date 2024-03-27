@@ -5,6 +5,9 @@
                 <a href="{{ route('cars.show', $car) }}" class="text-blue-500 hover:underline">
                     <strong>Brand: {{ $car->brand->title }}</strong>
                 </a>
+                <a href="{{ route('cars.catalog', $car) }}" class="text-blue-500 hover:underline">
+                    Car with comments
+                </a>
                 <p>Country: {{ $car->brand->country->title }}</p>
                 <p>Model: {{ $car->model }}</p>
                 <p>Transmission: {{ $car->transmission }}</p>

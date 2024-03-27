@@ -27,6 +27,11 @@ class Car extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function getCanDeleteAttribute()
     {
         return $this->status === Status::DRAFT || $this->status === Status::CANCELLED;
