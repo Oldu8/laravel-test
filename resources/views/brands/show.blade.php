@@ -11,4 +11,7 @@
         <x-form action="{{ route('brands.destroy', $brand->id) }}" method="DELETE"> 
             <button class="bg-red-500 text-white rounded p-2">Delete</button>
         </x-form>
+
+        <x-comments.create :id="$brand->id" model='brand' />
+        <x-comments.viewer :model="$brand" />
  </x-layout.brands-wrap>

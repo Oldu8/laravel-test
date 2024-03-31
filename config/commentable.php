@@ -7,5 +7,5 @@ use App\Models\Brand;
 return [
     'car' => Car::class,
     // 'post' => Post::class,
-    // 'brand' => Brand::class
+    'brand' => Brand::class
 ];

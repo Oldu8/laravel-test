@@ -23,4 +23,10 @@ class Brand extends Model
         return $this->belongsTo(Country::class);
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+
 }
