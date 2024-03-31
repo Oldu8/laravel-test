@@ -22,9 +22,10 @@ class Comment extends FormRequest
     public function checkCommentable()
     {
         $commentables = config('commentable');
-        if (!isset ($commentables[$this->model])) {
+        if (!isset($commentables[$this->model])) {
             throw ValidationException::withMessages(['model' => 'Invalid model.']);
         }
-        $commentables[$this->model]::findOrFail($this->id);
+        $model = $commentables[$this->model]::findOrFail($this->id);
+        return $model;
     }
 }

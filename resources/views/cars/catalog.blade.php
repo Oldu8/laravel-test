@@ -10,5 +10,6 @@
         </x-form>
         @endif
 
-        <x-comments.create :id="$car->id" model="car" />
+        <x-comments.create :id="$car->id" model='car' />
+        <x-comments.viewer :model="$car" />
  </x-layout.cars-wrap>
